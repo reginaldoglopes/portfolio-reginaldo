@@ -308,6 +308,306 @@
   .edu-card .tl-org{ margin-bottom: 10px; }
   .edu-card p{ margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
 
+  /* ---------- TRABALHOS ---------- */
+  .works-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 640px){ .works-grid{ grid-template-columns: 1fr; } }
+  .work-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .work-thumb{
+    position: relative;
+    aspect-ratio: 760 / 620;
+    overflow: hidden;
+    container-type: inline-size;
+    background:
+      linear-gradient(135deg, rgba(201,165,92,0.10), rgba(91,155,213,0.08)),
+      var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .work-thumb:has(img){ aspect-ratio: 16 / 10; }
+  .work-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .work-badge{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--brass-deep);
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var(--brass);
+    border-radius: 999px;
+    padding: 4px 11px;
+    backdrop-filter: blur(3px);
+  }
+  .work-badge--live{ color: var(--forest); border-color: var(--forest); }
+
+  .mock-app{
+    position: absolute;
+    top: 0; left: 0;
+    width: 760px;
+    height: 620px;
+    transform: scale(calc(100cqw / 760px));
+    transform-origin: top left;
+    background: #F4F6F9;
+    color: #1A2530;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 22px 26px;
+    box-sizing: border-box;
+  }
+  .mock-topbar{ display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .mock-pill{
+    background: #1B3A6B; color: #fff; font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: 6px; flex-shrink: 0;
+  }
+  .mock-titleblock{ flex-grow: 1; }
+  .mock-titleblock strong{ display: block; font-size: 17px; }
+  .mock-titleblock small{ display: block; font-size: 11px; color: #6B7684; margin-top: 2px; }
+  .mock-toggle{
+    display: flex; background: #E9EDF2; border-radius: 8px; padding: 3px; flex-shrink: 0;
+  }
+  .mock-toggle-btn{ font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 6px; color: #6B7684; }
+  .mock-toggle-btn--active{ background: #fff; color: #1A2530; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+  .mock-btn{
+    font-size: 11px; font-weight: 600; padding: 8px 14px; border-radius: 7px; flex-shrink: 0; white-space: nowrap;
+  }
+  .mock-btn--primary{ background: #1B3A6B; color: #fff; }
+  .mock-btn--ghost{ background: #fff; color: #1B3A6B; border: 1px solid #C9D2DE; }
+  .mock-stats{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+  .mock-stat{
+    background: #fff; border: 1px solid #E3E7ED; border-radius: 8px; padding: 12px 14px;
+  }
+  .mock-stat label{ display: block; font-size: 9px; letter-spacing: 0.04em; color: #8A93A0; margin-bottom: 6px; white-space: nowrap; }
+  .mock-stat strong{ font-size: 12px; color: #1A2530; white-space: nowrap; }
+  .mock-stat strong.mock-blue{ color: #2563A8; }
+  .mock-stat strong.mock-green{ color: #2F9E5C; }
+  .mock-tabs{ display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .mock-tab{
+    font-size: 9px; color: #6B7684; background: #fff; border: 1px solid #E3E7ED; border-radius: 6px;
+    padding: 6px 10px; white-space: nowrap;
+  }
+  .mock-tab b{ color: inherit; font-size: 9px; margin-right: 4px; }
+  .mock-tab em{ font-style: normal; color: #9AA3AF; margin-left: 4px; }
+  .mock-tab--active{ background: #1B3A6B; border-color: #1B3A6B; color: #fff; }
+  .mock-tab--active em{ color: #C9D2DE; }
+  .mock-panel{
+    background: #fff; border: 1px solid #E3E7ED; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+  }
+  .mock-panel-head{ display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 12px; }
+  .mock-panel-head strong{ display: block; font-size: 12px; }
+  .mock-panel-head small{ display: block; font-size: 10px; color: #8A93A0; margin-top: 3px; }
+  .mock-progress{ height: 6px; background: #EEF1F5; border-radius: 999px; overflow: hidden; }
+  .mock-progress span{ display: block; height: 100%; background: #1B3A6B; }
+  .mock-table{ background: #fff; border: 1px solid #E3E7ED; border-radius: 8px; overflow: hidden; }
+  .mock-row{
+    display: grid;
+    grid-template-columns: 2.4fr 0.9fr 2.4fr 1.2fr 1.1fr 1fr;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 12px;
+    border-bottom: 1px solid #EEF1F5;
+  }
+  .mock-row:last-child{ border-bottom: none; }
+  .mock-row--head{ background: #F7F9FB; font-size: 9px; font-weight: 600; color: #8A93A0; letter-spacing: 0.03em; }
+  .mock-row span{ font-size: 9.5px; color: #1A2530; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mock-tag{
+    justify-self: start; font-size: 8.5px; font-weight: 600; padding: 3px 8px; border-radius: 999px;
+  }
+  .mock-tag--pending{ background: #FDF0E4; color: #B4600F; }
+  .mock-tag--done{ background: #E4F5EA; color: #2F9E5C; }
+
+  /* ---------- LANDING MOCKUP (Level Up Contábil) ---------- */
+  .mock-landing{
+    position: absolute;
+    top: 0; left: 0;
+    width: 760px;
+    height: 620px;
+    transform: scale(calc(100cqw / 760px));
+    transform-origin: top left;
+    background: #fff;
+    color: #1A2530;
+    font-family: 'IBM Plex Sans', sans-serif;
+    box-sizing: border-box;
+  }
+  .mock-l-nav{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 40px; border-bottom: 1px solid #EEF1F5;
+  }
+  .mock-l-brand{ display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+  .mock-l-logo{ font-size: 18px; }
+  .mock-l-enter{ font-size: 13px; color: #6B7684; }
+  .mock-l-hero{
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 64px 70px 0;
+  }
+  .mock-l-icon{
+    width: 68px; height: 68px; border-radius: 14px; background: #F4F6FB;
+    display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 22px;
+  }
+  .mock-l-hero h4{
+    font-size: 44px; font-weight: 800; margin: 0 0 18px; letter-spacing: -0.01em;
+    background: linear-gradient(90deg, #17287A, #7AA6E0);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .mock-l-hero p{ font-size: 14px; color: #6B7684; max-width: 540px; line-height: 1.65; margin: 0 0 28px; }
+  .mock-l-actions{ display: flex; gap: 12px; }
+  .mock-btn--lg{ padding: 13px 22px; font-size: 13px; border-radius: 10px; }
+
+  /* ---------- DASHBOARD MOCKUP (DFIN) ---------- */
+  .mock-dash{
+    position: absolute;
+    top: 0; left: 0;
+    width: 760px;
+    height: 620px;
+    transform: scale(calc(100cqw / 760px));
+    transform-origin: top left;
+    display: flex;
+    background: #0E131A;
+    color: #E5E9EF;
+    font-family: 'IBM Plex Sans', sans-serif;
+    box-sizing: border-box;
+  }
+  .mock-dash-side{
+    width: 168px; flex-shrink: 0; background: #0A0D13; border-right: 1px solid #1C232C;
+    padding: 18px 12px;
+  }
+  .mock-dash-brand{ display: flex; align-items: center; gap: 9px; margin-bottom: 22px; }
+  .mock-dash-mark{
+    width: 30px; height: 30px; border-radius: 7px; background: #234A8A; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .mock-dash-brand strong{ display: block; font-size: 12px; }
+  .mock-dash-brand small{ display: block; font-size: 9px; color: #6B7684; }
+  .mock-dash-nav{ display: flex; flex-direction: column; gap: 4px; }
+  .mock-dash-item{ font-size: 11px; color: #9AA3AF; padding: 9px 10px; border-radius: 6px; }
+  .mock-dash-item--active{ background: #1A2230; color: #fff; }
+  .mock-dash-main{ flex-grow: 1; min-width: 0; padding: 20px 26px; }
+  .mock-dash-top{ display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .mock-dash-search{
+    font-size: 11px; color: #6B7684; background: #161C25; border: 1px solid #232B36;
+    border-radius: 8px; padding: 8px 14px; width: 260px;
+  }
+  .mock-dash-preview{ font-size: 10px; color: #4ADE80; font-weight: 600; }
+  .mock-dash-main h4{ font-size: 20px; margin: 0 0 4px; color: #fff; }
+  .mock-dash-main > small{ display: block; font-size: 11px; color: #7A8494; margin-bottom: 16px; }
+  .mock-dash-stats{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+  .mock-dash-stat{
+    background: #161C25; border: 1px solid #232B36; border-radius: 9px; padding: 11px 12px;
+  }
+  .mock-dash-stat label{ display: block; font-size: 8px; letter-spacing: 0.03em; color: #7A8494; margin-bottom: 6px; white-space: nowrap; }
+  .mock-dash-stat strong{ font-size: 15px; color: #fff; white-space: nowrap; }
+  .mock-dash-chart{ display: flex; align-items: center; gap: 26px; margin-bottom: 18px; }
+  .mock-donut{
+    width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(#4C8FE0 0 11%, #A85AE0 11% 20%, #E05A5A 20% 81%, #7A8494 81% 100%);
+    -webkit-mask: radial-gradient(circle, transparent 34px, #000 35px);
+    mask: radial-gradient(circle, transparent 34px, #000 35px);
+  }
+  .mock-dash-legend{ display: flex; flex-direction: column; gap: 8px; }
+  .mock-dash-legend div{ display: flex; align-items: center; gap: 8px; font-size: 11px; color: #C7CDD6; }
+  .mock-dash-legend em{ font-style: normal; font-weight: 600; color: #fff; margin-left: auto; }
+  .mock-dot{ width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .mock-dot--sm{ width: 6px; height: 6px; }
+  .mock-dash-table{ background: #161C25; border: 1px solid #232B36; border-radius: 9px; overflow: hidden; }
+  .mock-dash-row{
+    display: grid; grid-template-columns: 1.4fr 1.4fr 1.2fr 1fr 1.2fr;
+    align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-bottom: 1px solid #1C232C;
+  }
+  .mock-dash-row:last-child{ border-bottom: none; }
+  .mock-dash-row--head{ font-size: 9px; font-weight: 600; color: #7A8494; letter-spacing: 0.03em; }
+  .mock-dash-row span{ font-size: 10px; color: #E5E9EF; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mock-dash-tag{
+    justify-self: start; background: #3A2416; color: #E0A15A; font-size: 9px; font-weight: 600;
+    padding: 3px 8px; border-radius: 999px;
+  }
+  .mock-dash-dot-label{ display: flex; align-items: center; gap: 6px; }
+  .work-card-body{
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .work-card h3{ font-size: 1.05rem; margin-bottom: 3px; }
+  .work-subtitle{ font-size: 0.84rem; color: var(--ink-soft); opacity: 0.8; margin-bottom: 12px; }
+  .work-card-body > p{ margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+  .work-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .work-tags span{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+  .work-card .work-link{
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.86rem;
+    font-weight: 500;
+  }
+  .work-empty{
+    grid-column: 1 / -1;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .work-empty p{ margin: 0; }
+
+  /* ---------- FERRAMENTAS ---------- */
+  .tools-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 640px){ .tools-grid{ grid-template-columns: repeat(2, 1fr); } }
+  .tool-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+    padding: 18px 16px;
+  }
+  .tool-icon{
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brass);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .tool-card h3{ font-size: 0.98rem; margin-bottom: 4px; }
+  .tool-card p{ margin: 0; color: var(--ink-soft); font-size: 0.86rem; }
+
   /* ---------- HABILIDADES ---------- */
   .skills-grid{
     display: grid;
@@ -453,6 +753,8 @@
     <div class="nav-links">
       <a href="#sobre">Sobre</a>
       <a href="#trajetoria">Trajetória</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#ferramentas">Ferramentas</a>
       <a href="#formacao">Formação</a>
       <a href="#habilidades">Habilidades</a>
       <a href="#contato">Contato</a>
@@ -552,6 +854,216 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<section id="trabalhos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Trabalhos</h2>
+    </div>
+    <p class="lede">Materiais e entregas que mostram como aplico o que aprendo na prática.</p>
+
+    <div class="works-grid">
+      <!--
+        Modelo de card — duplique este <article class="work-card"> para cada trabalho.
+        - work-thumb: coloque uma <img> dentro (screenshot/print do trabalho). Sem imagem, o fundo neutro aparece sozinho.
+        - work-badge: status curto, ex. "estudo de caso" ou "em produção" (adicione work-badge--live para a variante verde)
+        - work-tags: uma <span> por tecnologia/ferramenta usada
+        - work-link: pode ser um link real (PDF, repositório, publicação) ou removido se não houver material para abrir
+      -->
+      <article class="work-card">
+        <div class="work-thumb">
+          <span class="work-badge">estudo de caso</span>
+          <div class="mock-app" aria-hidden="true">
+            <div class="mock-topbar">
+              <span class="mock-pill">SEDUC</span>
+              <div class="mock-titleblock">
+                <strong>Controle de Empenho da Folha</strong>
+                <small>Importação de planilha, teto por fonte e saldo em tempo real</small>
+              </div>
+              <div class="mock-toggle">
+                <span class="mock-toggle-btn mock-toggle-btn--active">Empenho</span>
+                <span class="mock-toggle-btn">Importe</span>
+              </div>
+              <span class="mock-btn mock-btn--primary">Importar planilha</span>
+            </div>
+            <div class="mock-stats">
+              <div class="mock-stat"><label>TETO TOTAL DEFINIDO</label><strong>R$ 210.480.300,00</strong></div>
+              <div class="mock-stat"><label>EMPENHADO</label><strong class="mock-blue">R$ 850,00</strong></div>
+              <div class="mock-stat"><label>SALDO RESTANTE</label><strong class="mock-green">R$ 210.479.450,00</strong></div>
+              <div class="mock-stat"><label>A EMPENHAR</label><strong>R$ 198.310.070,00</strong></div>
+            </div>
+            <div class="mock-tabs">
+              <span class="mock-tab mock-tab--active"><b>1541107073</b> COMP. VAAF – 70% <em>0/10</em></span>
+              <span class="mock-tab">1541000073 COMPLEM. VAAF <em>0/48</em></span>
+              <span class="mock-tab">1543000073 COMPLEM. VAAR <em>1/36</em></span>
+              <span class="mock-tab">1540000043 IMPOSTOS <em>0/59</em></span>
+            </div>
+            <div class="mock-panel">
+              <div class="mock-panel-head">
+                <div>
+                  <strong>1541107073 — COMP. VAAF – 70% · PESSOAL</strong>
+                  <small>10 itens importados · 0 empenhado(s)</small>
+                </div>
+                <span class="mock-btn mock-btn--ghost">Exportar CSV</span>
+              </div>
+              <div class="mock-progress"><span style="width:34%"></span></div>
+            </div>
+            <div class="mock-table">
+              <div class="mock-row mock-row--head">
+                <span>Grupo</span><span>Código</span><span>Ação / Despesa</span><span>Valor</span><span>Fonte</span><span>Empenho</span>
+              </div>
+              <div class="mock-row">
+                <span>Administrativo</span><span>319004</span><span>Contratação por Tempo Determinado</span><span>R$ 12.340,00</span><span>1541107073</span><span class="mock-tag mock-tag--pending">Pendente</span>
+              </div>
+              <div class="mock-row">
+                <span>Magistério / Ensino Médio</span><span>319004</span><span>Vencimentos e Vantagens Fixas</span><span>R$ 8.750,00</span><span>1541107073</span><span class="mock-tag mock-tag--pending">Pendente</span>
+              </div>
+              <div class="mock-row">
+                <span>Magistério / Fundamental</span><span>319011</span><span>Gratificação Natalina</span><span>R$ 15.900,00</span><span>1541107073</span><span class="mock-tag mock-tag--done">Empenhado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <h3>Sistema de Empenho SEDUC</h3>
+          <div class="work-subtitle">Controle de empenho da folha do FUNDEB/SEDUC</div>
+          <p>O Sistema de Empenho SEDUC é uma plataforma web desenvolvida para automatizar e controlar o empenho da folha de pagamento do FUNDEB/SEDUC, substituindo o acompanhamento manual em planilhas.</p>
+          <div class="work-tags">
+            <span>Node.js</span>
+            <span>PostgreSQL</span>
+            <span>SQLite</span>
+            <span>HTML/JS</span>
+          </div>
+          <!-- work-link: adicionar quando o sistema tiver autenticação (hoje o link é público e editável por qualquer pessoa) -->
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-thumb">
+          <span class="work-badge work-badge--live">em produção</span>
+          <div class="mock-landing" aria-hidden="true">
+            <div class="mock-l-nav">
+              <div class="mock-l-brand"><span class="mock-l-logo">🎓</span> Level Up Contábil</div>
+              <span class="mock-l-enter">Entrar</span>
+            </div>
+            <div class="mock-l-hero">
+              <div class="mock-l-icon">🎓</div>
+              <h4>Level Up Contábil</h4>
+              <p>Transformamos e simplificamos a gestão financeira e contábil. Automatizamos as rotinas burocráticas e levamos o seu negócio ao próximo nível com agilidade, clareza e máxima segurança.</p>
+              <div class="mock-l-actions">
+                <span class="mock-btn mock-btn--primary mock-btn--lg">Acessar Plataforma →</span>
+                <span class="mock-btn mock-btn--ghost mock-btn--lg">Conhecer a plataforma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <h3>Level Up Contábil</h3>
+          <div class="work-subtitle">Plataforma de estudos para o Exame de Suficiência do CFC</div>
+          <p>O Level Up Contábil é uma plataforma web gamificada voltada para a preparação do Exame de Suficiência do Conselho Federal de Contabilidade (CFC), organizando o estudo em trilhas progressivas e com acesso restrito gerenciado por administradores.</p>
+          <div class="work-tags">
+            <span>Next.js 16</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS</span>
+            <span>Supabase</span>
+            <span>Google Gemini</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-thumb">
+          <span class="work-badge">estudo de caso</span>
+          <div class="mock-dash" aria-hidden="true">
+            <div class="mock-dash-side">
+              <div class="mock-dash-brand">
+                <span class="mock-dash-mark">DF</span>
+                <div><strong>DFIN</strong><small>Controle de Processos</small></div>
+              </div>
+              <div class="mock-dash-nav">
+                <span class="mock-dash-item mock-dash-item--active">Visão Geral</span>
+                <span class="mock-dash-item">Controle de Processos</span>
+                <span class="mock-dash-item">Descontingenciamento</span>
+                <span class="mock-dash-item">Execução Financeira</span>
+              </div>
+            </div>
+            <div class="mock-dash-main">
+              <div class="mock-dash-top">
+                <span class="mock-dash-search">Buscar por processo, credor…</span>
+                <span class="mock-dash-preview">Modo Preview (sem login)</span>
+              </div>
+              <h4>Visão Geral</h4>
+              <small>Consolidado de todos os processos da DFIN — PETE e PEAE.</small>
+              <div class="mock-dash-stats">
+                <div class="mock-dash-stat"><label>TOTAL DE PROCESSOS</label><strong>842</strong></div>
+                <div class="mock-dash-stat"><label>VALOR TOTAL</label><strong>R$ 680,4 mi</strong></div>
+                <div class="mock-dash-stat"><label>URGENTES</label><strong>512</strong></div>
+                <div class="mock-dash-stat"><label>PETE</label><strong>96</strong></div>
+                <div class="mock-dash-stat"><label>PEAE</label><strong>74</strong></div>
+                <div class="mock-dash-stat"><label>AGUARD. SEFA</label><strong>41</strong></div>
+              </div>
+              <div class="mock-dash-chart">
+                <div class="mock-donut"></div>
+                <div class="mock-dash-legend">
+                  <div><span class="mock-dot" style="background:#4C8FE0"></span>PETE<em>96</em></div>
+                  <div><span class="mock-dot" style="background:#A85AE0"></span>PEAE<em>74</em></div>
+                  <div><span class="mock-dot" style="background:#E05A5A"></span>Urgentes<em>512</em></div>
+                  <div><span class="mock-dot" style="background:#7A8494"></span>Outros<em>160</em></div>
+                </div>
+              </div>
+              <div class="mock-dash-table">
+                <div class="mock-dash-row mock-dash-row--head">
+                  <span>Processo</span><span>Credor</span><span>Valor</span><span>Programa</span><span>Status SF</span>
+                </div>
+                <div class="mock-dash-row">
+                  <span>E-2025/0134590</span><span>FORNECEDOR ABC</span><span>R$ 452.300,00</span><span class="mock-dash-tag">Urgentes</span><span class="mock-dash-dot-label"><span class="mock-dot mock-dot--sm" style="background:#4C8FE0"></span>Solicitada</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <h3>DFIN — Controle de Processos</h3>
+          <div class="work-subtitle">Painel de controle de processos da Diretoria de Finanças (SEDUC/PA)</div>
+          <p>O Painel de Controle de Processos da Diretoria de Finanças (DFIN/SEDUC-PA) é um dashboard web desenvolvido para gerenciar e monitorar os processos financeiros da instituição.</p>
+          <div class="work-tags">
+            <span>HTML/CSS/JS</span>
+            <span>Chart.js</span>
+            <span>Google Identity Services</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="work-empty">
+        <p>Em breve — os próximos trabalhos serão publicados aqui.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ferramentas">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Ferramentas</h2>
+    </div>
+    <p class="lede">O que uso no dia a dia para controlar processos, orçamento e prazos.</p>
+
+    <div class="tools-grid">
+      <!-- Modelo de card — duplique este bloco para cada ferramenta.
+           tool-icon: coloque uma sigla curta (2-3 letras) que identifique a ferramenta -->
+      <div class="tool-card">
+        <div class="tool-icon">GS</div>
+        <h3>Google Sheets</h3>
+        <p>Controle de processos e planilhas de acompanhamento.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">SF</div>
+        <h3>SIAFE</h3>
+        <p>Sistema de administração financeira do estado.</p>
+      </div>
     </div>
   </div>
 </section>
