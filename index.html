@@ -322,7 +322,16 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
+  .work-card:hover, .work-card:focus-visible{
+    transform: translateY(-4px);
+    border-color: var(--forest);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35), 0 0 24px rgba(91,155,213,0.35);
+    outline: none;
+  }
+  .work-card:hover .work-link, .work-card:focus-visible .work-link{ text-decoration: underline; }
   .work-thumb{
     position: relative;
     aspect-ratio: 760 / 620;
@@ -347,9 +356,9 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.02em;
-    color: var(--brass-deep);
+    color: var(--forest);
     background: rgba(0,0,0,0.55);
-    border: 1px solid var(--brass);
+    border: 1px solid var(--forest);
     border-radius: 999px;
     padding: 4px 11px;
     backdrop-filter: blur(3px);
@@ -576,6 +585,83 @@
     text-align: center;
   }
   .work-empty p{ margin: 0; }
+
+  /* ---------- MODAL DE TRABALHO ---------- */
+  .work-modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 6vh 20px;
+    overflow-y: auto;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .work-modal-overlay.is-open{ opacity: 1; pointer-events: auto; }
+  .work-modal{
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    max-width: 620px;
+    width: 100%;
+    padding: 34px 32px 32px;
+    position: relative;
+    transform: translateY(12px);
+    transition: transform 0.2s ease;
+  }
+  .work-modal-overlay.is-open .work-modal{ transform: translateY(0); }
+  .work-modal-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .work-modal-close:hover{ color: var(--ink); border-color: var(--brass); }
+  .work-modal-badge{
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    border-radius: 999px;
+    padding: 4px 11px;
+    margin-bottom: 14px;
+  }
+  .work-modal-badge--live{ color: var(--forest); border-color: var(--forest); }
+  .work-modal h3{ font-size: 1.5rem; margin-bottom: 4px; }
+  .work-modal .work-subtitle{ margin-bottom: 20px; }
+  .work-modal-section{ margin-bottom: 20px; }
+  .work-modal-section:last-of-type{ margin-bottom: 0; }
+  .work-modal-section h4{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .work-modal-section p{ margin: 0 0 8px; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.65; }
+  .work-modal-section p:last-child{ margin-bottom: 0; }
+  .work-modal-section ul{ margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.65; }
+  .work-modal-section li{ margin-bottom: 6px; }
+  .work-modal .work-tags{ margin-top: 0; }
 
   /* ---------- FERRAMENTAS ---------- */
   .tools-grid{
@@ -874,7 +960,7 @@
         - work-tags: uma <span> por tecnologia/ferramenta usada
         - work-link: pode ser um link real (PDF, repositório, publicação) ou removido se não houver material para abrir
       -->
-      <article class="work-card">
+      <article class="work-card" data-project="seduc-empenho" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="work-thumb">
           <span class="work-badge">estudo de caso</span>
           <div class="mock-app" aria-hidden="true">
@@ -942,7 +1028,7 @@
         </div>
       </article>
 
-      <article class="work-card">
+      <article class="work-card" data-project="level-up" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="work-thumb">
           <span class="work-badge work-badge--live">em produção</span>
           <div class="mock-landing" aria-hidden="true">
@@ -975,7 +1061,7 @@
         </div>
       </article>
 
-      <article class="work-card">
+      <article class="work-card" data-project="dfin" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="work-thumb">
           <span class="work-badge">estudo de caso</span>
           <div class="mock-dash" aria-hidden="true">
@@ -1229,6 +1315,174 @@
     <div class="footer-bottom">Reginaldo Gonçalves Lopes — Belém, PA</div>
   </div>
 </footer>
+
+<div class="work-modal-overlay" id="workModalOverlay">
+  <div class="work-modal" role="dialog" aria-modal="true" aria-labelledby="workModalTitle">
+    <button class="work-modal-close" id="workModalClose" aria-label="Fechar">&times;</button>
+    <span class="work-modal-badge" id="workModalBadge"></span>
+    <h3 id="workModalTitle"></h3>
+    <div class="work-subtitle" id="workModalSubtitle"></div>
+    <div id="workModalSections"></div>
+    <div class="work-tags" id="workModalTags"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PROJECTS = {
+    'seduc-empenho': {
+      badge: 'estudo de caso',
+      title: 'Sistema de Empenho SEDUC',
+      subtitle: 'Controle de empenho da folha do FUNDEB/SEDUC',
+      tags: ['Node.js', 'PostgreSQL', 'SQLite', 'HTML/JS'],
+      sections: [
+        { h: 'O problema', p: [
+          'Todo mês chegam dois documentos que precisam bater: o documento de empenho, que diz o que tem que ser pago (grupo, código, ação, plano interno, valor e fonte de recurso); e o relatório da folha do SIAFEM, com centenas de páginas, mostrando o que a folha efetivamente pagou.',
+          'Conferir isso manualmente é lento e sujeito a erro. O sistema faz essa conferência automaticamente e aponta onde está a diferença.'
+        ]},
+        { h: 'Como funciona', list: [
+          'Importe: cruza os dois documentos pelos grupos oficiais e mostra, para cada um, o valor a pagar, o valor da folha, a diferença e a situação.',
+          'Também mostra o quadro das fontes (folha, receita e saldo) e os códigos de natureza, com valores separados por regime.',
+          'Empenho: uma aba por fonte de recurso, com o teto de cada uma (a receita disponível). Cada item tem um checkbox — ao marcar, o valor sai do saldo na hora, e o sistema avisa antes de estourar o teto.',
+          'Busca por texto ou valor, e exportação em CSV.'
+        ]},
+        { h: 'Situação atual', p: [
+          'Funcionando e testado em produção com arquivos reais. Ainda faltam autenticação de acesso e histórico entre competências antes do uso oficial.'
+        ]}
+      ]
+    },
+    'level-up': {
+      badge: 'em produção',
+      badgeLive: true,
+      title: 'Level Up Contábil',
+      subtitle: 'Plataforma de estudos para o Exame de Suficiência do CFC',
+      tags: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Google Gemini'],
+      sections: [
+        { h: 'A proposta', p: [
+          'Transforma o estudo para o Exame de Suficiência do CFC numa jornada por níveis: o aluno lê a teoria em blocos curtos, pratica com questões no estilo da banca, acompanha o próprio desempenho e só avança quando domina o conteúdo. Acesso restrito — sem cadastro público, contas liberadas por administrador.'
+        ]},
+        { h: 'Como o aluno usa', list: [
+          'Início: painel com acerto geral, tendência recente, desafio atual, revisões pendentes e ranking da turma.',
+          'Estudar: trilha de 5 níveis por matéria, teoria em blocos curtos, tela cheia.',
+          'Praticar: questões de múltipla escolha com correção na hora.',
+          'Revisão do dia e Relatório com gráficos de evolução.',
+          '6 matérias do exame, 5 níveis cada, 70% de acerto pra avançar — o mesmo patamar da prova.'
+        ]},
+        { h: 'IA na geração de questões', p: [
+          'Integra o Google Gemini para produzir questões inéditas a partir de material real (questão avulsa, prova em PDF ou material de estudo), com verificação anti-plágio automática e aprovação humana obrigatória antes de qualquer questão chegar ao aluno.'
+        ]},
+        { h: 'Segurança', list: [
+          'Senhas com criptografia scrypt, sessão por cookie assinado digitalmente.',
+          'Gabarito nunca é enviado ao navegador — a correção acontece no servidor.',
+          'Banco de dados sem acesso público; toda leitura e escrita passa por verificação no servidor.'
+        ]}
+      ]
+    },
+    'dfin': {
+      badge: 'estudo de caso',
+      title: 'DFIN — Controle de Processos',
+      subtitle: 'Painel de controle de processos da Diretoria de Finanças (SEDUC/PA)',
+      tags: ['HTML/CSS/JS', 'Chart.js', 'Google Identity Services'],
+      sections: [
+        { h: 'O que é', p: [
+          'Dashboard para acompanhar de forma consolidada os processos financeiros da DFIN, organizados pelos programas PETE e PEAE.'
+        ]},
+        { h: 'Estrutura', list: [
+          'Visão Geral: KPIs, gráfico de processos por programa com filtro clicável, tabela resumida.',
+          'Controle de Processos: sub-abas por Urgente, PETE e PEAE, cada uma com tabela própria.',
+          'Descontingenciamento: tabela com status automático (Pendente, Cancelada, Liberado) conforme o preenchimento dos dados.',
+          'Execução Financeira: comparativo entre programas, funil financeiro, ranking de credores.',
+          'Modo de gestão (para administradores): cadastro, edição e exclusão com confirmação, e log de auditoria de todas as alterações.'
+        ]},
+        { h: 'Acesso', p: [
+          'Login com Google, com dois níveis de permissão: administração (edição completa) e visualização (somente leitura).'
+        ]}
+      ]
+    }
+  };
+
+  var overlay = document.getElementById('workModalOverlay');
+  var closeBtn = document.getElementById('workModalClose');
+  var elBadge = document.getElementById('workModalBadge');
+  var elTitle = document.getElementById('workModalTitle');
+  var elSubtitle = document.getElementById('workModalSubtitle');
+  var elSections = document.getElementById('workModalSections');
+  var elTags = document.getElementById('workModalTags');
+  var lastFocused = null;
+
+  function renderSections(sections){
+    elSections.innerHTML = '';
+    sections.forEach(function(sec){
+      var wrap = document.createElement('div');
+      wrap.className = 'work-modal-section';
+      var h4 = document.createElement('h4');
+      h4.textContent = sec.h;
+      wrap.appendChild(h4);
+      if(sec.p){
+        sec.p.forEach(function(text){
+          var p = document.createElement('p');
+          p.textContent = text;
+          wrap.appendChild(p);
+        });
+      }
+      if(sec.list){
+        var ul = document.createElement('ul');
+        sec.list.forEach(function(text){
+          var li = document.createElement('li');
+          li.textContent = text;
+          ul.appendChild(li);
+        });
+        wrap.appendChild(ul);
+      }
+      elSections.appendChild(wrap);
+    });
+  }
+
+  function openProject(key){
+    var data = PROJECTS[key];
+    if(!data) return;
+    lastFocused = document.activeElement;
+    elBadge.textContent = data.badge;
+    elBadge.className = 'work-modal-badge' + (data.badgeLive ? ' work-modal-badge--live' : '');
+    elTitle.textContent = data.title;
+    elSubtitle.textContent = data.subtitle;
+    renderSections(data.sections);
+    elTags.innerHTML = '';
+    data.tags.forEach(function(tag){
+      var span = document.createElement('span');
+      span.textContent = tag;
+      elTags.appendChild(span);
+    });
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if(lastFocused){ lastFocused.focus(); }
+  }
+
+  document.querySelectorAll('.work-card[data-project]').forEach(function(card){
+    card.addEventListener('click', function(){ openProject(card.getAttribute('data-project')); });
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openProject(card.getAttribute('data-project'));
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
 
 </body>
 </html>
