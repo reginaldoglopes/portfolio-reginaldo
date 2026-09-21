@@ -20,11 +20,10 @@ Site estático de arquivo único — sem build, sem framework, sem dependências
 | Sobre | Apresentação pessoal e trajetória resumida |
 | Trajetória | Linha do tempo profissional (FADESP → SEDUC → DFIN) |
 | Trabalhos | Cards de estudos de caso de projetos técnicos, com modal de detalhes ao clicar |
-| Ferramentas | Sistemas e ferramentas usadas no dia a dia (SIAFE, SIMAS, Google Sheets, stack de desenvolvimento) |
 | Formação | Graduação em Ciências Contábeis |
-| Habilidades | Competências comportamentais e técnicas |
+| Habilidades | Competências comportamentais e técnicas, com uma linha de logos das ferramentas usadas (SIAFE, SIMAS, Google Sheets, stack de desenvolvimento) |
 | Rotina | Rotina semanal |
-| Contato | E-mail, WhatsApp, LinkedIn |
+| Contato | E-mail, WhatsApp, LinkedIn e download do currículo em PDF |
 
 Ver [`docs/CASE-STUDIES.md`](docs/CASE-STUDIES.md) para detalhes sobre os projetos apresentados na seção Trabalhos e as decisões de sigilo de dados por trás de cada card.
 

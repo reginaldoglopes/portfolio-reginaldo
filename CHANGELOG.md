@@ -2,6 +2,14 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [2026-09-21]
+
+### Added
+- Botões "Baixar currículo (PDF)" no topo (hero) e no rodapé apontando para `curriculo-reginaldo-goncalves-lopes.pdf`, em substituição ao fallback por e-mail.
+
+### Changed
+- Seção **Ferramentas** removida como tópico próprio: os 8 logos agora aparecem em uma linha, em círculos e sem textos, abaixo dos cards de Habilidades. Link "Ferramentas" removido do menu.
+
 ## [2026-09-18]
 
 ### Added
